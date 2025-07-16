@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- evitar ataques de Cross Site Scripting (injeção de dados)-->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'"
+    />
+    <title>Vórtex Temporal</title>
+  </head>
+  <body>
+    <h1>Hello Electron</h1>
+    <button onclick="openChild()">Janela Secundaria</button>
+    <footer><p id="dataAtual"></p></footer>
+
+    <script src="render.js"></script>
+  </body>
+</html>
