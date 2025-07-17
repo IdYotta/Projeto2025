@@ -1,7 +1,7 @@
 /** Processo de renderização */
 
 console.log("Processo de Renderização");
-console.log(`Electron: ${api.varElectron()}`);
+console.log(`Electron: ${api.verElectron()}`);
 
 function openChild() {
   //console.log("clicou");
@@ -10,5 +10,5 @@ function openChild() {
 
 api.send("oi");
 api.on((event, message) => {
-  console.log(`Processso de renderização recebeu uma mensagem.`);
+  console.log(`Processso de renderização recebeu uma mensagem: ${message}`);
 });

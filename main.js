@@ -56,6 +56,7 @@ app.whenReady().then(() => {
 
   ipcMain.on("renderer-message", (event, message) => {
     console.log(`Process principal recebeu uma mensagem: ${message}`);
+    event.reply("main-menssage", "Olá! Renderizador");
   });
 
   //<<<<<<<<<<<<<<<<<<<<<<<<<<

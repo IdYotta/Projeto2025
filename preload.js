@@ -6,8 +6,7 @@ contextBridge.exposeInMainWorld("api", {
   verElectron: () => process.version.electron,
   open: () => ipcRenderer.send("open-child"),
   send: (message) => ipcRenderer.send("renderer-message", message),
-  on: (message) => ipcRenderer.on('main-message', message),
-  event.replay('')
+  on: (message) => ipcRenderer.on("main-message", message),
 });
 
 //manipulação do DOM
