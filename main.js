@@ -8,6 +8,7 @@ const {
   Menu,
   shell,
   ipcMain,
+  dialog,
 } = require("electron");
 //Aqui conexão ao arquivo preloud
 const path = require("node:path");
@@ -58,7 +59,46 @@ app.whenReady().then(() => {
     console.log(`Process principal recebeu uma mensagem: ${message}`);
     event.reply("main-menssage", "Olá! Renderizador");
   });
-
+  ipcMain.on("dialog-info", () => {
+    dialog
+      .showMessageBox({
+        type: "info",
+        title: "Informação",
+        message: "Mensagem",
+        buttons: ["ok"],
+      })
+      .then(() => {
+        console.log(result);
+      });
+  });
+  ipcMain.on("dialog-warning", () => {
+    dialog
+      .showMessageBox({
+        type: "warning",
+        title: "Aviso",
+        message: "Confirma essa ação?",
+        buttons: ["Sim", "Não"],
+        defaultId: 0,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.response === 0) {
+          console.log("Confirmado");
+        }
+      });
+  });
+  ipcMain.on("dialog-select", () => {
+    dialog
+      .showOpenDialog({
+        properties: ["openDirectory"],
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
   //<<<<<<<<<<<<<<<<<<<<<<<<<<
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
